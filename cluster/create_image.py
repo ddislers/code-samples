@@ -27,7 +27,16 @@ auth_header = f'Basic {encoded_credentials}'
 url = f"https://{args.ip}:9440/api/nutanix/v2.0/images"
 
 # setup the JSON payload that will be used for this request
-payload = f'{{"annotation":"{args.image_annotation}","image_import_spec":{{"storage_container_name":"{args.ctr_name}","storage_container_uuid":"{args.ctr_uuid}","url":"{args.iso_url}"}},"image_type":"ISO_IMAGE","name":"{args.image_name}"}}'
+payload = f'{{ \
+        "annotation":"{args.image_annotation}", \
+        "image_import_spec":{{ \
+            "storage_container_name":"{args.ctr_name}", \
+            "storage_container_uuid":"{args.ctr_uuid}", \
+            "url":"{args.iso_url}" \
+        }}, \
+        "image_type":"ISO_IMAGE", \
+       "name":"{args.image_name}" \
+}}'
 
 # setup our request headers
 # note the 'Authorization' header in particular as you'll need to generate this for your environment before continuing
