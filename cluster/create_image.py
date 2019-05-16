@@ -1,45 +1,73 @@
 #!/usr/bin/python3.6
 
 import requests
+import urllib3
 import argparse
+import getpass
+import json
 from base64 import b64encode
+import sys
+import os
 
-# setup our command line parameters
-# for this example we only require the passing of parameters that are truly environment-specific
-# other parameters are optional, otherwise generic values are used
+'''
+suppress warnings about insecure connections
+you probably shouldn't do this in production
+'''
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+'''
+setup our command line parameters
+for this example we only require the a single parameter - the name of the JSON file that contains our request parameters
+this is a very clean way of passing parameters to this sort of script, without the need for excessive parameters on the command line
+'''
 parser = argparse.ArgumentParser()
-parser.add_argument('ip',help='Cluster or CVM IP address')
-parser.add_argument('username',help='Cluster username')
-parser.add_argument('password',help='Cluster password')
-parser.add_argument('ctr_name',help='Storage container name')
-parser.add_argument('ctr_uuid',help='Storage container UUID')
-parser.add_argument('--iso_url',help='ISO image URL',default='http://mirror.intergrid.com.au/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso')
-parser.add_argument('--image_name',help='Image name',default='CentOS7_Minimal')
-parser.add_argument('--image_annotation',help='Image annotation/description',default='CentOS 7 Minimal image created with Prism REST API v2.0')
+parser.add_argument('json',
+                    help='JSON file containing query parameters')
 args = parser.parse_args()
 
-# setup the HTTP Basic Authorization header based on the supplied username and password
-# please be aware of the security risks of passing credentials on the command line
-encoded_credentials = b64encode(bytes(f"{args.username}:{args.password}",encoding="ascii")).decode("ascii")
+'''
+try and read the JSON parameters from the supplied file
+if the json parameter is not specified, the script will attempt to read a file named "params.json"
+'''
+json_data = ''
+try:
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    with open(f'{script_dir}/{args.json}', 'r') as params:
+        json_data = json.load(params)
+except FileNotFoundError:
+    print(f'{args.json} parameters file not found.')
+    sys.exit()
+
+# get the cluster password
+cluster_password = getpass.getpass(prompt='Please enter your cluster password: ',stream=None)
+
+'''
+setup the HTTP Basic Authorization header based on the supplied username and password
+done this way so that passwords are not supplied on the command line
+'''
+encoded_credentials = b64encode(bytes(f"{json_data['username']}:{cluster_password}",
+                                encoding="ascii")).decode("ascii")
 auth_header = f'Basic {encoded_credentials}'
 
 # setup the URL that will be used for the API request
-url = f"https://{args.ip}:9440/api/nutanix/v2.0/images"
+url = f"https://{json_data['ip']}:9440/api/nutanix/v2.0/images"
 
 # setup the JSON payload that will be used for this request
 payload = f'{{ \
-        "annotation":"{args.image_annotation}", \
+        "annotation":"{json_data["""image_annotation"""]}", \
         "image_import_spec":{{ \
-            "storage_container_name":"{args.ctr_name}", \
-            "storage_container_uuid":"{args.ctr_uuid}", \
-            "url":"{args.iso_url}" \
+            "storage_container_name":"{json_data["""ctr_name"""]}", \
+            "storage_container_uuid":"{json_data["""ctr_uuid"""]}", \
+            "url":"{json_data["""iso_url"""]}" \
         }}, \
         "image_type":"ISO_IMAGE", \
-       "name":"{args.image_name}" \
+       "name":"{json_data["""image_name"""]}" \
 }}'
 
-# setup our request headers
-# note the 'Authorization' header in particular as you'll need to generate this for your environment before continuing
+'''
+setup the request headers
+note the use of {auth_header} i.e. the Basic Authorization credentials we setup earlier
+'''
 headers = {
     'Accept': "application/json",
     'Content-Type': "application/json",
@@ -48,6 +76,14 @@ headers = {
     }
 
 # submit the request
-response = requests.request("POST", url, data=payload, headers=headers, verify=False)
-
-print(response.text)
+try:
+    response = requests.request("POST", url, data=payload, headers=headers,
+                                verify=False)
+    if(response.ok):
+        print(response.text)
+    else:
+        print(f'An error occurred while connecting to {args.ip}.')
+        # the following line can be uncommented to show detailed error information
+        # print(response.text)
+except Exception as ex:
+    print(f'An {type(ex).__name__} exception occurred while connecting to {args.ip}.\nArgument: {ex.args}.')

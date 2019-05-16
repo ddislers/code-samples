@@ -7,16 +7,14 @@ A collection of code samples designed for distribution via the Nutanix Developer
 
 Please feel free to use these for your own environments if you find them useful.
 
-create_image.py
-...............
+Assumptions
+-----------
 
-Python 3.6 script to create a Nutanix Images services image using the Prism REST API v2.0
+Detailed instructions on how to setup a development/testing environment are beyond the scope of this repo and the scripts contained within it.
 
-.. code:: bash
+For example, many of the Python examples rely on the **requests** and **urllib3** modules.  Steps to install modules are covered in the official Python 3 documentation_.
 
-  usage: create_image.py [-h] [--iso_url ISO_URL] [--image_name IMAGE_NAME]
-                         [--image_annotation IMAGE_ANNOTATION]
-                         ip username password ctr_name ctr_uuid
+.. _documentation: https://docs.python.org/3/installing/index.html
 
 Support
 -------
