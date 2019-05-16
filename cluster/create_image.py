@@ -27,7 +27,6 @@ args = parser.parse_args()
 
 '''
 try and read the JSON parameters from the supplied file
-if the json parameter is not specified, the script will attempt to read a file named "params.json"
 '''
 json_data = ''
 try:

@@ -18,7 +18,7 @@ Python 3.6 script to create a Nutanix Images services image using the Prism REST
 
 Requires the passing of a JSON-formatted file that contains our request parameters.  This file must exist in the 
 
-**params.json** has been supplied as an example, as follows:
+**create_image.json** has been supplied in this repo as an example, as follows:
 
 .. code:: json
 
