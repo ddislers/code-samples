@@ -1,10 +1,10 @@
-Nutanix Developer Portal Code Samples - Cluster Management
+Nutanix Developer Portal Code Samples - Storage Management
 ##########################################################
 
-create_image.py
+create_image_v2.0.py
 ...............
 
-Python 3.6 script to create a Nutanix Images services image using the Prism REST API v2.0
+Python 3.6 script to create a Nutanix Images services image using the **Prism REST API v2.0**.  Requires Prism Element and is not supported for use with Prism Central.
 
 .. code:: bash
 
@@ -16,9 +16,9 @@ Python 3.6 script to create a Nutanix Images services image using the Prism REST
   optional arguments:
     -h, --help  show this help message and exit
 
-Requires the passing of a JSON-formatted file that contains our request parameters.  This file must exist in the 
+Requires the passing of a JSON-formatted file that contains our request parameters.  This file must exist in the same directory as the script.
 
-**create_image.json** has been supplied in this repo as an example, as follows:
+**create_image_v2.0.json** has been supplied in this repo as an example, as follows:
 
 .. code:: json
 

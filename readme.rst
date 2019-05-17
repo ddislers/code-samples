@@ -16,6 +16,12 @@ For example, many of the Python examples rely on the **requests** and **urllib3*
 
 .. _documentation: https://docs.python.org/3/installing/index.html
 
+Sections
+--------
+
+- **storage**: Storage scripts, e.g. interactions with storage_containers, storage stats
+- **vm**: VM scripts, e.g. create basic VM, create detailed VM
+
 Support
 -------
 
