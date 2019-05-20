@@ -21,6 +21,7 @@ Sections
 
 - **storage**: Storage scripts, e.g. interactions with storage_containers, storage stats
 - **vm**: VM scripts, e.g. create basic VM, create detailed VM
+- **cluster**: Cluster scripts, e.g. list VMs
 
 Support
 -------
