@@ -1,6 +1,21 @@
 Nutanix Developer Portal Code Samples - VM Management
 #####################################################
 
+create_vm_v3_basic
+..................
+
+Bash script to create a Nutanix cluster VM with only the absolute bare minimum of required information i.e. VM name.  Uses **Prism REST API v3** and will work on both Prism Central and Prism Element.
+
+Requires **create_vm_v3_basic.json** to exist in the same directory as the script and formatted as follows:
+
+.. code:: json
+
+  {"cluster_ip":"10.0.0.1","username":"admin","vm_name":"BasicVMViaAPIv3"}
+
+.. code:: bash
+
+  usage: create_basic_vm_v3
+
 create_vm_v3_basic.py
 .....................
 
