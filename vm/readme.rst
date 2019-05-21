@@ -39,8 +39,20 @@ Requires the passing of a JSON-formatted file that contains our request paramete
 
   {"cluster_ip":"10.0.0.1","username":"admin","vm_name":"BasicVM"}
 
+create_vm_v3_basic.ps1
+......................
+
+PowerShell script to create a Nutanix cluster VM with only the absolute bare minimum of required information i.e. VM name.  Uses **Prism REST API v3** and will work on both Prism Central and Prism Element.
+
+.. code:: bash
+
+  usage: PS C:\Users\NutanixDev\Samples> .\create_vm_v3_basic.ps1
+
+- Set your cluster/CVM IP address by editing **$parameters.cluster_ip**
+- Set the name for the new VM by editing **$parameters.vm_name**
+
 create_vm_v3_detailed.py
-.....................
+........................
 
 Python 3.6 script to create a Nutanix cluster VM with an extensive and detailed VM configuration.  Uses Prism REST API v3 and will work on both Prism Central and Prism Element.
 
