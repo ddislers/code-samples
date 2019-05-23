@@ -14,6 +14,15 @@ namespace ConsoleApp1
             /**
              * instance of our RequestParameters class
              * done this way purely to nicely package the request parameters__
+             * 
+             * important note - the current v3 API will return a MAXIMUM of 500 VMs for any single request,
+             * regardless of the value specified for "length"
+             *
+             * to collect a list of all VMs on systems with >500 VMs, please use a
+             * combination of the 'length' and 'offset' parameters.
+             * 
+             * for example, {"kind":"vm","length":500,"offset":501} on a cluster with
+             * 517 VMs would return a list of 15 VMs i.e. VMs from 501-516, excluding CVM
             */
             RequestParameters Parameters = new RequestParameters()
             {
