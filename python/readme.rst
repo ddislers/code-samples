@@ -40,6 +40,8 @@ The examples and screenshots below are from the **create_vm_v3_basic.py** sample
 
    .. figure:: script_output.png
 
+#. Check the output to make sure the request has a state of **PENDING**.
+
 .. _Community: https://visualstudio.microsoft.com/vs/community/
 .. _Code: https://code.visualstudio.com/
 .. _requests: https://2.python-requests.org/en/master/user/install/
