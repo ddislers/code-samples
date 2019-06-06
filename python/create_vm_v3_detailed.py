@@ -1,5 +1,3 @@
-#!/usr/bin/python3.6
-
 '''
 use the Prism REST API v3 to create a detailed VM
 configures VM with most commonly-required fields
@@ -126,15 +124,22 @@ try:
     # submit the request
     try:
         response = requests.request("POST", url, data=payload, headers=headers,
-                                    verify=False)
+                                    verify=False,
+                                    timeout=1)
         if(response.ok):
             print(response.text)
         else:
-            print(f'An error occurred while connecting to {args.ip}.')
+            print(f'An error occurred while connecting to {json_data["cluster_ip"]}.')
             # the following line can be uncommented to show detailed error information
             # print(response.text)
     except Exception as ex:
-        print(f'An {type(ex).__name__} exception occurred while connecting to {args.ip}.\nArgument: {ex.args}.')
+        print(f'An {type(ex).__name__} exception occurred while connecting to {json_data["cluster_ip"]}.\nArgument: {ex.args}.')
 
 except KeyError:
     print(f'{args.json} file does not appear to contain the required fields.  Please check the file and try again.')
+
+'''
+wait for the enter key before continuing
+this is to prevent terminal flashing if being run inside VS Code, for example
+'''
+input('Press ENTER to exit.')

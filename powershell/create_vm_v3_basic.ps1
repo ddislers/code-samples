@@ -23,7 +23,7 @@ $parameters = [RequestParameters]::new()
 $parameters.vm_name = "BasicVMViaAPIv3"
 
 # set the basic properties for the request
-$parameters.cluster_ip = "192.168.1.131"
+$parameters.cluster_ip = "10.0.0.1"
 $parameters.uri = "https://" + $parameters.cluster_ip + ":9440/api/nutanix/v3/vms"
 
 # the payload for this sample script creates a basic VM named as per the $parameters.vm_name variable
@@ -42,7 +42,7 @@ $parameters.payload = "{ `
 
 $parameters.method = "POST"
 
-# set a sensible timeout - you may want to increase this 
+# set a sensible timeout - you may want to increase this
 $parameters.timeout = 5
 
 # get the user's credentials
@@ -86,12 +86,12 @@ $certCallback = @"
         {
             if(ServicePointManager.ServerCertificateValidationCallback ==null)
             {
-                ServicePointManager.ServerCertificateValidationCallback += 
+                ServicePointManager.ServerCertificateValidationCallback +=
                     delegate
                     (
-                        Object obj, 
-                        X509Certificate certificate, 
-                        X509Chain chain, 
+                        Object obj,
+                        X509Certificate certificate,
+                        X509Chain chain,
                         SslPolicyErrors errors
                     )
                     {

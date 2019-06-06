@@ -24,7 +24,7 @@ else
 	USERNAME=`echo -n $JSON_CONTENTS | jq -r ".username"`
 	VM_NAME=`echo -n $JSON_CONTENTS | jq -r ".vm_name"`
 
-	
+
 	# get the password from the user
 	echo "Please enter your cluster password (will not be shown on screen):"
 	read -s PASSWORD
@@ -34,6 +34,7 @@ else
 
 	# submit the request
 	curl --insecure -X POST \
+        --connect-timeout 5 \
 	https://$CLUSTER_IP:9440/api/nutanix/v3/vms \
   -H "Accept: application/json" \
   -H "Content-Type: application/json" \

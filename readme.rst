@@ -3,6 +3,8 @@ Nutanix Developer Portal Code Samples
 
 A collection of code samples designed for distribution via the Nutanix Developer Portal_.
 
+**Note**: The structure of this repository changed on June 6th 2019.  Please update any existing bookmarks you may have saved.
+
 .. _Portal: https://developer.nutanix.com
 
 Please feel free to use these for your own environments if you find them useful.
@@ -12,16 +14,15 @@ Assumptions
 
 Detailed instructions on how to setup a development/testing environment are beyond the scope of this repo and the scripts contained within it.
 
-For example, many of the Python examples rely on the **requests** and **urllib3** modules.  Steps to install modules are covered in the official Python 3 documentation_.
-
-.. _documentation: https://docs.python.org/3/installing/index.html
+Each script language covered in this repository has an accompanying readme file that suggests how the environment should be setup, although individual preferences will nearly always override those suggestions.
 
 Sections
 --------
 
-- **storage**: Storage scripts, e.g. interactions with storage_containers, storage stats
-- **vm**: VM scripts, e.g. create basic VM, create detailed VM
-- **cluster**: Cluster scripts, e.g. list VMs
+- **python**: Python scripts based on Python >=3.7
+- **powershell**: Windows PowerShell scripts, based on PowerShell >= 5.1
+- **shell**: Bash scripts to run in a Linux terminal (please note that the Windows 10 Bash Shell has not been tested with these scripts!)
+- **csharp**: Single-file/script Microsoft C# applications, typically run in the console
 
 Support
 -------
