@@ -10,7 +10,7 @@ Please see the main_ page for general instructions.
 Code Sample Details
 ...................
 
-A quick intro, first.  The **list_vm_v3.cs** code sample shows a basic demo of REST API interactions with C#.  There is no provision for environments of a specific size as all API requests will be made with the default paramters.  For example:
+A quick intro, first.  The **list_vm_v3.cs** code sample shows a basic demo of REST API interactions with C#.  There is no provision for environments of a specific size as all API requests will be made with the default parameters.  For example:
 
 - A maximum of 20 entities are returned with each requests
 - No offset has been specified i.e. every request will return VMs starting 0-19
