@@ -32,13 +32,36 @@ The examples and screenshots below are from the **list_vm_v3.cs** sample.
 
 #. Click **Create**
 
-#. When the new console application is created, the default Program.cs contents can be completely replaced with the code from the repository sample you are using.
+#. Add a reference to **NewtonSoft.Json**:
 
-#. In the default sample code, edit the **Parameters** object so that the **URI**, **Username** and **Password** are correct for your environment.
+   - Click **View** > **Other Windows** > **Package Manager Console**
+   - Enter the following command:
+
+      .. code-block:: bash
+
+         Install-Package Newtonsoft.Json -Version 12.0.2
+
+#. Add a reference to **System.Web.Extensions** - this is required for the **System.Web.Script.Serialization** that some code samples use:
+
+   - Right-click **References** in the Solution Explorer and select **Add Reference**
+   - Find **System.Web.Extensions** in the list and check the box next to it (the checkbox won't be visible until you mouse over the option)
+   - Click OK
+
+#. When the new console application is created, the default Program.cs contents can be completely replaced (copied/pasted) with the code from the repository sample you are using.
+
+   - Tip: Make sure you replace **all** the existing contents of Program.cs, including all **Using** statements at the top.
+
+#. In the default sample code, edit **ClusterIp**, **ClusterUsername** and **ClusterPassword** variables so they are correct for your environment.
 
 #. Either build (Ctrl-Shift-B) or run (F5) the application.  The complete JSON response will be shown in the console application window.
 
+#. The screenshots below show two examples:
+
+   - An example of a console app aimed at small environments with fewer than 500 VMs.  This is taken from **list_vm_v3.cs**.
+   - An example of a console app designed for larger environments i.e. more than 500 VMs.  This is taken from **list_vm_v3_large.cs**.
+
    .. figure:: app_running.png
+   .. figure:: app_running_large.png
 
 .. _Community: https://visualstudio.microsoft.com/vs/community/
 .. _Documentation: https://www.nuget.org/packages/Newtonsoft.Json/

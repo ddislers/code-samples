@@ -12,23 +12,30 @@ namespace ConsoleApp1
         {
 
             /**
+             * hard-coded password here - you'd need to do this properly in production
+            */
+            string ClusterUsername = "admin";
+            string ClusterPassword = "nutanix/4u";
+            string ClusterIp = "10.0.0.1";
+
+            /**
              * instance of our RequestParameters class
              * done this way purely to nicely package the request parameters__
-             * 
+             *
              * important note - the current v3 API will return a MAXIMUM of 500 VMs for any single request,
              * regardless of the value specified for "length"
              *
              * to collect a list of all VMs on systems with >500 VMs, please use a
              * combination of the 'length' and 'offset' parameters.
-             * 
+             *
              * for example, {"kind":"vm","length":500,"offset":501} on a cluster with
              * 517 VMs would return a list of 15 VMs i.e. VMs from 501-516, excluding CVM
             */
             RequestParameters Parameters = new RequestParameters()
             {
-                URI = "https://10.0.0.1:9440/api/nutanix/v3/vms/list",
-                Username = "admin",
-                Password = "nutanix/4u",
+                URI = "https://" + ClusterIp + ":9440/api/nutanix/v3/vms/list",
+                Username = ClusterUsername,
+                Password = ClusterPassword,
                 Payload = "{\"kind\":\"vm\"}",
                 Method = "POST",
                 Timeout = 5000
@@ -102,7 +109,7 @@ namespace ConsoleApp1
 
                 /**
                  * here is an example of getting the cluster name from a request to GET /api/nutanix/v2.0/cluster
-                 * 
+                 *
                  * NutanixCluster cluster = JsonConvert.DeserializeObject<NutanixCluster>(Response.Message);
                  * DisplayResponse("{\"cluster\":{\"name\":\"" + cluster.Name.ToString() + "\",\"version\":\"" + cluster.Version.ToString() + "\"}}");
                 */
