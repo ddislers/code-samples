@@ -7,7 +7,7 @@ The setup instructions are the same as all other console apps in this repository
 
 Please see the main_ page for general instructions.
 
-list_vm_v3_large.cs
+Code Sample Details
 ...................
 
 A quick intro, first.  The **list_vm_v3.cs** code sample shows a basic demo of REST API interactions with C#.  There is no provision for environments of a specific size as all API requests will be made with the default paramters.  For example:
