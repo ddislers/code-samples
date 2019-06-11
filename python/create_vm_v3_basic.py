@@ -1,5 +1,3 @@
-#!/usr/bin/python3.6
-
 '''
 use the Prism REST API v3 to create a simple VM
 requires on the mandatory fields i.e. VM name

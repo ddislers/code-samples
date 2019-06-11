@@ -1,6 +1,3 @@
-#!/usr/bin/python3.6
-
-
 '''
 use the Prism REST API v2.0 to create an Image Services image
 without modification, the script will create an image sourced from any HTTP-accessible URL
