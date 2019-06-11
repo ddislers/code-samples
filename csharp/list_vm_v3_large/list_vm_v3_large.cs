@@ -146,7 +146,7 @@ namespace ConsoleApp1
                      * simple math based on the number of times a 500 VM response will be received
                     */
                     int Iterations = VmCount / MaxVmsInResponse;
-                    Console.WriteLine("Total iterations required: " + (Iterations + 1));
+                    Console.WriteLine("Total iterations required, including the initial request: " + (Iterations + 1));
 
                     /**
                      * starting at 1 here because we've already completed iteration "0"

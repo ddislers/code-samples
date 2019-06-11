@@ -7,6 +7,8 @@ The setup instructions are the same as all other python code samples in this rep
 
 Please see the main_ page for general instructions.
 
+**Usage instructions are shown at the bottom of this page.**
+
 Code Sample Details
 ...................
 
@@ -40,5 +42,24 @@ While this demo is considerably more "advanced" than the standard **list_vm_v3.p
 An example of the script's output is shown below:
 
    .. figure:: script_output.png
+
+Usage
+-----
+
+.. code-block:: bash
+
+   usage: list_vm_v3_large.py [-h] json
+
+   positional arguments:
+     json        JSON file containing query parameters
+
+   optional arguments:
+     -h, --help  show this help message and exit
+
+Example:
+
+.. code-block:: bash
+
+   /usr/bin/python3.7 ./list_vm_v3_large.py list_vm_v3_large.json
 
 .. _main: https://github.com/nutanixdev/code-samples/tree/master/python
